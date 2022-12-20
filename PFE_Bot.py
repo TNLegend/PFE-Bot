@@ -31,6 +31,8 @@ else:
     print(path2)
     sender = input("type your email >>")
     appPass = input("type your email password >>")
+    subject = input("type email subject >>")
+    body = input("type what you want to send in all mails body >>")
     with open(path2,mode="r",encoding="utf-8") as mails:
         lines = mails.readlines()
     for line in lines:
@@ -72,8 +74,8 @@ else:
         message = EmailMessage()
         message['from'] = sender
         message['to'] = receiver
-        message['subject'] = "testing"
-        message.set_content("testin bruh")
+        message['subject'] = subject
+        message.set_content(body)
         mime_type, _ = mimetypes.guess_type(f"{os.getcwd()}/final.pdf")
         mime_type, mime_subtype = mime_type.split('/', 1)
         with open("final.pdf", 'rb') as ap:
