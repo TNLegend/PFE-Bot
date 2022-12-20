@@ -1,0 +1,2 @@
+comtypes==1.1.14
+pywin32==305
