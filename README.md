@@ -33,6 +33,8 @@ Exemple : `company1@gmail.com:company1`
 
 4- type your appPassword
 
-5-Now wait till it finishes sending
+5-Type email subject and emails Body
+
+6-Now wait till it finishes sending
 
 **PS: the bot needs the resume file in document format in order to be able to replace the company name ,it ll convert it to pdf and send the pdf to emails provided
