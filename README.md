@@ -23,12 +23,16 @@ You can convert pdf to document [here](https://www.ilovepdf.com/pdf_to_word)
 
 Now after importing your document:
 
-1-Select the txt file that has your emails. lines in this file should follow this format `<email>:<company_name>`
+1-type the text to replace. Let's say you got already a resume and follow up letter for company `X` but you dont want to change the company name each time you want to send to a new company. The bot will do for you so you type the text you want to replace which is `X` in our case and it will replace that text with the company names provided in emails file (we'll talk about this file later) 
+
+2- Select the txt file that has your emails. lines in this file should follow this format `<email>:<company_name>`
 
 Exemple : `company1@gmail.com:company1`
 
-2- type your email 
+3- type your email 
 
-3- type your appPassword
+4- type your appPassword
 
-3-Now wait till it finishes sending
+5-Now wait till it finishes sending
+
+**PS: the bot needs the resume file in document format in order to be able to replace the company name ,it ll convert it to pdf and send the pdf to emails provided
