@@ -5,6 +5,7 @@ import comtypes.client
 from email.message import EmailMessage
 import mimetypes
 import smtplib
+
 print('''
 
 ██████  ███████ ███████     ██████   ██████  ████████ 
@@ -12,7 +13,7 @@ print('''
 ██████  █████   █████       ██████  ██    ██    ██    
 ██      ██      ██          ██   ██ ██    ██    ██    
 ██      ██      ███████     ██████   ██████     ██    
-                                                      
+
 Created with love By TNLegend
 ''')
 
@@ -20,25 +21,41 @@ answer = int(input("Type 1 to import your resume and follow up letter\nType 2 to
 if answer == 2:
     exit(0)
 else:
-    #preparing cv and resume file
-    path = str(filedialog.askopenfilename(title="select your cv and resume",filetypes=[("doc file",".doc*")]))
-    path = path.replace("/","\\")
+    # preparing cv and resume file
+    path = str(filedialog.askopenfilename(title="select your cv and resume", filetypes=[("doc file", ".doc*")]))
+    path = path.replace("/", "\\")
     print(path)
     toReplace = input("please type the text you want to replace >>")
     wd_replace = 2  # 2=replace all occurences, 1=replace one occurence, 0=replace no occurences
     wd_find_wrap = 1  # 2=ask to continue, 1=continue search, 0=end if search range is reached
-    path2 = str(filedialog.askopenfilename(title="select emails list",filetypes=[("text file", ".txt")]))
+    path2 = str(filedialog.askopenfilename(title="select emails list", filetypes=[("text file", ".txt")]))
     print(path2)
     sender = input("type your email >>")
-    appPass = input("type your email password >>")
+    mailDomain = sender[sender.rfind("@")+1:]
+    with open("smtps.txt",mode="r",encoding="utf-8") as smtps:
+        lines = smtps.readlines()
+        mySmtp = ""
+        for line in lines:
+            if mailDomain == line.split(":")[0]:
+                mySmtp = line.split(":")[1].strip()
+                print(f"Found smtp : {mySmtp}")
+        if mySmtp == "":
+            print("Email not supported by the Bot")
+            exit(0)
+    print(f"Your mail domain : {mailDomain}")
+    print(f"Found smtp : {mySmtp}")
+    if (mailDomain == "gmail.com") or (mailDomain == "icloud.com"):
+        appPass = input("type your generated appPassword >>")
+    else:
+        appPass = input("type your email password >>")
     subject = input("type email subject >>")
     body = input("type what you want to send in all mails body >>")
-    with open(path2,mode="r",encoding="utf-8") as mails:
+    with open(path2, mode="r", encoding="utf-8") as mails:
         lines = mails.readlines()
     for line in lines:
         myList = line.split(":")
-        receiver = myList[0]
-        replaced = myList[1]
+        receiver = myList[0].strip()
+        replaced = myList[1].strip()
 
         # Open Word
         word_app = win32com.client.DispatchEx("Word.Application")
@@ -79,10 +96,11 @@ else:
         mime_type, _ = mimetypes.guess_type(f"{os.getcwd()}/final.pdf")
         mime_type, mime_subtype = mime_type.split('/', 1)
         with open("final.pdf", 'rb') as ap:
-            message.add_attachment(ap.read(), maintype=mime_type, subtype=mime_subtype,filename=os.path.basename(f"{os.getcwd()}/final.pdf"))
-        with smtplib.SMTP(host="smtp.gmail.com",port=587) as smtp:
-            smtp.ehlo() #start communiction with smtp server
-            smtp.starttls() #tls = transport layer security
-            smtp.login(sender,appPass)
+            message.add_attachment(ap.read(), maintype=mime_type, subtype=mime_subtype,
+                                   filename=os.path.basename(f"{os.getcwd()}/final.pdf"))
+        with smtplib.SMTP(host=mySmtp, port=587) as smtp:
+            smtp.ehlo()  # start communiction with smtp server
+            smtp.starttls()  # tls = transport layer security
+            smtp.login(sender, appPass)
             smtp.send_message(message)
             print(f"email sent to {receiver}")
