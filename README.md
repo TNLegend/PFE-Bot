@@ -2,7 +2,7 @@
 
 ## AppPassword
 
-first thing first get your google AppPassword for gmail and store it somewhere.
+first thing first get your AppPassword for gmail/Icloud and store it somewhere.
 PS: don't share your appPassword with anyone.
 
 Geneate it from here :
