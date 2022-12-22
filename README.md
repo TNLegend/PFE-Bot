@@ -2,10 +2,14 @@
 
 ## google AppPassword
 
-first thing first get your google AppPassword and store it somewhere.
+first thing first get your google AppPassword for gmail and store it somewhere.
 PS: don't share your appPassword with anyone.
 
-Geneate it from [here](https://myaccount.google.com/apppasswords)
+Geneate it from here :
+
+[gmail](https://myaccount.google.com/apppasswords)
+
+[icloud](https://support.apple.com/fr-fr/HT204397)
 
 ## Installing requirements
 
@@ -31,7 +35,7 @@ Exemple : `company1@gmail.com:company1`
 
 3- type your email 
 
-4- type your appPassword
+4- type your password/appPassword
 
 5-Type email subject and emails Body
 
