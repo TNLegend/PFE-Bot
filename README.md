@@ -1,6 +1,6 @@
 
 
-## google AppPassword
+## AppPassword
 
 first thing first get your google AppPassword for gmail and store it somewhere.
 PS: don't share your appPassword with anyone.
