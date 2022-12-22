@@ -1,7 +1,7 @@
 aol.com:smtp.aol.com
 att.net:smtp.mail.att.net
 comcast.net:smtp.comcast.net
-icloud.com:mtp.mail.me.com
+icloud.com:smtp.mail.me.com
 gmail.com:smtp.gmail.com
 outlook.com:smtp-mail.outlook.com
 yahoo.com:smtp.mail.yahoo.com
